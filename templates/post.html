@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Build a Blog</h1>
+
+    {% if entry: %}
+
+    <div>
+        <h2>{{entry.title}}</h2>
+        <p>{{entry.content}}</p>
+    </div>
+
+    {% else: %}
+
+    <div>
+        <p class="error">There is no blog enrty with that id number.</p>
+    </div>
+
+    {% endif %}
+
+{% endblock %}

@@ -7,7 +7,7 @@
 
     <div>
         {% for entry in entries %}
-        <h2>{{entry.title}}</h2>
+        <h2><a href="?id={{entry.id}}">{{entry.title}}</a></h2>
         <p>{{entry.content}}</p>
         {% endfor %}
     </div>

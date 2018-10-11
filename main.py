@@ -21,8 +21,15 @@ class Entry(db.Model):
         self.content = content
 
 
-@app.route('/blog')
+@app.route('/blog', methods=['GET'])
 def index():
+
+    entry_id = request.args.get("id")
+    if entry_id != None and int(entry_id) > 0:
+        entry_id = int(entry_id)
+        entry = Entry.query.filter_by(id=entry_id).first()
+        return render_template('post.html',title="Build a Blog!", 
+        entry=entry)
 
     entries = Entry.query.all()
     return render_template('blog.html',title="Build a Blog!", 
@@ -49,7 +56,7 @@ def newpost():
         db.session.add(new_entry)
         db.session.commit()
 
-        return redirect('/blog')
+        return redirect('/blog?id=' + str(new_entry.id))
 
     if not request.args.get("error_title") and not request.args.get("error_content"):
         return render_template('newpost.html')
