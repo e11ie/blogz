@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% if owner %}
+    <h1>{{owner.email}}'s Blogz</h1>
+
+        {% if entries %}
+
+        <div>
+            {% for entry in entries %}
+            <h2><a href="?id={{entry.id}}">{{entry.title}}</a></h2>
+            <p>{{entry.content}}</p>
+            {% endfor %}
+        </div>
+        
+        {% else %}
+
+        <p>{{owner.email}} has no blog entries yet</p>
+
+        {% endif %}
+
+    {% else %}
+
+    <h1 class="error">This user does not exist.</h1>
+
+    {% endif %}
+
+{% endblock %}
